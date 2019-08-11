@@ -1,7 +1,12 @@
 import slack
+from dotenv import load_dotenv
 import os
+load_dotenv()
 # SLACK_BOT_TOKEN is xoxb.. token
-BOT_TOKEN = os.environ.get("SLACK_BOT_TOKEN")
+# DO NOT CHANGE THIS BLOK. EDIT .env FILE
+BOT_TOKEN = os.getenv("SLACK_BOT_TOKEN")
+# DO NOT CHANGE THIS BLOK. EDIT .env FILE
+
 web_client = slack.WebClient(token=BOT_TOKEN)
 rtm_client = slack.RTMClient(token=BOT_TOKEN)
 BOT_NAME = "reinforceme"
@@ -61,9 +66,9 @@ def say_hello(**payload):
     try:
         if f"<@{get_BotID(BOT_NAME)}>" in data['text']:
             instant_message = post_instant_message(data) 
-            scheduled_1 = post_scheduled_message(data,60*60*4)
-            scheduled_5 = post_scheduled_message(data,60*60*12) 
-            scheduled_15 = post_scheduled_message(data,60*60*24*2) 
+            scheduled_1 = post_scheduled_message(data,15)
+            scheduled_5 = post_scheduled_message(data,30) 
+            scheduled_15 = post_scheduled_message(data,45) 
             print("instant_message: ",instant_message)
     except:
         pass
